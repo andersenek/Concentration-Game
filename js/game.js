@@ -21,3 +21,13 @@ gridCards = []; // Create card array
     gridCards.push(self.addClass("check")); // Set class 'check' to see if card has been clicked and push to array
     console.log("The card has been clicked")
 });
+
+function checkCards() { // Function to check if cards are matching
+    var match = (gridCards[0].data("card") === gridCards[1].data("card")) // Valid if data-card values of first and second card are the same
+      if (match) {
+        console.log("The cards are the same");
+      }
+      else {
+        console.log("The cards are different");
+      }
+}
