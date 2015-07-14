@@ -21,14 +21,14 @@ ul {
 
 /* Card Grid */
 #memory-grid{
-  width: 90%;
+  width: 80%;
   height: 100%;
   overflow: hidden;
   margin: 0 auto;
 }
 
 #memory-grid li{
-  width: 23%;
+  width: 22.5%;
   height: 150px;
   border: 5px solid lavender;
   margin:0 15px 15px 0;
