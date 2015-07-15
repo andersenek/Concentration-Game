@@ -52,7 +52,7 @@ $(function playGame() {
 
   grid.on("click", "li.card", function() { // Add Click Listener for list items .card in #memory-grid
     var self = $(this); // Sets li.card variable
-      if (gridCards.length == 2 || self.is('.check') || self.is('.correct')) return console.log("Don't flip more than two"); // Disables users from clicking multiple cards until cards have matched or been flipped over
+      if (gridCards.length == 2 || self.is('.check')) return console.log("Don't flip more than two"); // Disables users from clicking multiple cards until cards have matched or been flipped over
       gridCards.push(self.addClass("check")); // Set class 'check' to see if card has been clicked and push to array
       console.log("The card has been clicked")
       if (gridCards.length === 2) checkCards(); // If two cards are flipped, run function to check if cards are matching
