@@ -1,15 +1,11 @@
 // Concentration Game: The object of the game is to collect as many matching pairs as possible.
 
 // Start with a standard deck (grid) of playing cards.
-
 // The player can chooses a card and turn it over.
 // The player then selects another card and turns it over.
-
 // If the two cards are a matching pair for example two sixes then they take the two cards and start their stack.
 // If the cards are not a match they are turned back over and resume playing.
-
 // Play continues in this fashion until all the cards are played or time runs out.
-
 // A players turn is not over until they are unsuccessfully at matching a pair.
 
 $(function playGame() {
@@ -25,10 +21,15 @@ $(function playGame() {
     var match = (gridCards[0].data("card") === gridCards[1].data("card")) // Valid if data-card values of first and second card are the same
       if (match) {
         counter = counter + 1; // Increase the counter by 1 if there is a match
-        matchCount.html("Matches: " + counter);
-        alert("Congrats, you got a match!");
+        matchCount.html("Matches: " + counter); // Display the counter increase
+        alert("Congratulations, you got a match!");
         console.log("The cards are the same!");
         gridCards = []; // Reset the array so cards can be compared again
+        if($('.check').length === ($("#memory-grid > li").length)) { // If all the cards have been checked
+          alert("Congrats, you've revealed everything!");
+          setTimeout(simpleClear, 2000); // Refresh the game
+          console.log("All the matches are matched")
+        }
       }
       else {
         setTimeout(clearCards, 3000);
@@ -41,6 +42,10 @@ $(function playGame() {
     gridCards[0].removeClass("check"); // Remove class to clear [0]
     gridCards[1].removeClass("check"); // Remove class to clear [1]
     gridCards.length = 0; // Resets cards so player can continue
+  }
+
+  function simpleClear() { // Function to clear cards at end of game
+    grid.children().removeClass("check"); // Removes .check so all cards reset
   }
 
   grid.on("click", "li.card", function() { // Add Click Listener for list items .card in #memory-grid
@@ -57,13 +62,11 @@ $(function playGame() {
       cardShuffle.append(cardShuffle.children().eq((Math.random() * i | 0))); // Append the shuffled list items
     }
     console.log("The cards are shuffled");
-
-    var self = $("li.card"); // Sets li.card variable
-    gridCards.push(self.removeClass("check")); // Remove class from all cards to flip over
-    gridCards = []; // Reset the array so cards can be compared again
+      cardShuffle.children().removeClass("check"); // Removes .check so all cards reset
+      gridCards = []; // Reset the array so cards can be compared again
   });
 
-  magicMike.on("click", function() { // Accidental Magic Button
+  magicMike.on("click", function() { // Add Click Listener Magic Mike button
    var self = $("li.card"); // Sets li.card variable
    console.log("Show me the magic!")
    gridCards.push(self.addClass("check")); // Let's make all the cards show!
