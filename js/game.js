@@ -11,7 +11,7 @@
 $(function playGame() {
 
   var matchCount = $("#match-list"); // Selects Matches HTML Area
-  var counter = 0;
+  var counter = 0; // Set the counter to '0'
   var magicMike = $("#magic"); // Selects Magic button
   var newGame = $("#new-game"); // Selects New Game button
   var grid = $("#memory-grid"); // Create grid variable
@@ -25,20 +25,22 @@ $(function playGame() {
         alert("Congratulations, you got a match!");
         console.log("The cards are the same!");
         gridCards = []; // Reset the array so cards can be compared again
-        if($('.check').length === ($("#memory-grid > li").length)) { // If all the cards have been checked
+        if($('.check').length === ($("#memory-grid > li").length)) { // If all the cards have been matched (.check)
           alert("Congrats, you've revealed everything!");
           setTimeout(simpleClear, 2000); // Refresh the game
+          counter = 0; // Refresh the counter
+          matchCount.html("Matches: " + counter); // Set refreshed counter
           console.log("All the matches are matched")
         }
       }
       else {
-        setTimeout(clearCards, 3000);
+        setTimeout(clearCards, 3000); // Clear unmatched cards
         alert("Sorry, keep making Mike dance.");
         console.log("The cards are different");
       }
   }
 
-  function clearCards() { // Function to clear cards
+  function clearCards() { // Function to clear unmatched cards
     gridCards[0].removeClass("check"); // Remove class to clear [0]
     gridCards[1].removeClass("check"); // Remove class to clear [1]
     gridCards.length = 0; // Resets cards so player can continue
@@ -64,6 +66,8 @@ $(function playGame() {
     console.log("The cards are shuffled");
       cardShuffle.children().removeClass("check"); // Removes .check so all cards reset
       gridCards = []; // Reset the array so cards can be compared again
+      counter = 0; // Refresh the counter
+      matchCount.html("Matches: " + counter); // Set refreshed counter
   });
 
   magicMike.on("click", function() { // Add Click Listener Magic Mike button
