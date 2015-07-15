@@ -1,13 +1,15 @@
 /* Body */
 body {
-  background-color: honeydew;
+  background: url(../images/bg.png);
+  font-family: 'Questrial', sans-serif;;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
   text-align: center;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  color: cadetblue;
+  color: rgb(225, 225, 225);
 }
 
 ul {
@@ -30,7 +32,7 @@ ul {
 #memory-grid li{
   width: 22.5%;
   height: 150px;
-  border: 5px solid lavender;
+  border: 5px solid rgb(80, 80, 80);
   margin:0 15px 15px 0;
   float:left;
   display:block;
@@ -46,7 +48,6 @@ ul {
   display:block;
   width:100%;
   height:100%;
-  background-color: aliceblue;
   cursor:pointer;
   overflow:hidden;
   position:relative;
@@ -60,7 +61,7 @@ ul {
   left:0;
   z-index:100;
   content:'';
-  background-color: cornflowerblue;
+  background: rgb(35, 35, 35);
   transition:left 0.3s;
 }
 
@@ -69,6 +70,26 @@ ul {
 }
 
 #memory-grid li.check {
-  border-color: cornflowerblue;
-  background-color: cornflowerblue;
+  border-color: rgb(35, 35, 35);
+  background: rgb(35, 35, 35);
+}
+
+/* Buttons */
+button#new-game {
+  border: 3px solid rgb(225, 225, 225);
+  background: rgb(170, 170, 170);
+  color: rgb(225, 225, 225);
+  padding: 5px 10px;
+  margin: 0px 10px;
+  font-family: 'Questrial', sans-serif;;
+  font-size: .9em;
+}
+
+button#magic {
+    background:url(../images/wand.png) no-repeat;
+    cursor:pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    float: left;
 }

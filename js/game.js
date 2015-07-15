@@ -16,6 +16,7 @@ $(function playGame() {
 
   var matchCount = $("#match-list"); // Selects Matches HTML Area
   var counter = 0;
+  var magicMike = $("#magic"); // Selects Magic button
   var newGame = $("#new-game"); // Selects New Game button
   var grid = $("#memory-grid"); // Create grid variable
   gridCards = []; // Create card array
@@ -50,7 +51,7 @@ $(function playGame() {
       if (gridCards.length === 2) checkCards(); // If two cards are flipped, run function to check if cards are matching
   });
 
-  newGame.on("click", function() {
+  newGame.on("click", function() { // Add Click Listener New Game button
     var cardShuffle = $("#memory-grid"); // Selects list items in #memory-grid
     for (var i = cardShuffle.children().length; i >= 0; i--) { // For the amount of list items, iterate through
       cardShuffle.append(cardShuffle.children().eq((Math.random() * i | 0))); // Append the shuffled list items
@@ -61,6 +62,12 @@ $(function playGame() {
     gridCards.push(self.removeClass("check")); // Remove class from all cards to flip over
     gridCards = []; // Reset the array so cards can be compared again
   });
+
+  magicMike.on("click", function() { // Accidental Magic Button
+   var self = $("li.card"); // Sets li.card variable
+   console.log("Show me the magic!")
+   gridCards.push(self.addClass("check")); // Let's make all the cards show!
+ });
 
 console.log("The game is ready to be played");
 
