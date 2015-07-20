@@ -8,6 +8,7 @@
 // Play continues in this fashion until all the cards are played or time runs out.
 // A players turn is not over until they are unsuccessfully at matching a pair.
 
+// nice job wrapping everything inside of a function to avoid polluting the global namespace!
 $(function playGame() {
 
   var matchCount = $("#match-list"); // Selects Matches HTML Area
@@ -15,16 +16,22 @@ $(function playGame() {
   var magicMike = $("#magic"); // Selects Magic button
   var newGame = $("#new-game"); // Selects New Game button
   var grid = $("#memory-grid"); // Create grid variable
+  
+  // any reason you made this variable global?
   gridCards = []; // Create card array
 
+
   function checkCards() { // Function to check if cards are matching
+    // nice use of data attributes!
     var match = (gridCards[0].data("card") === gridCards[1].data("card")) // Valid if data-card values of first and second card are the same
+    // technically the if / else block below doesn't need to be indented.
       if (match) {
         counter = counter + 1; // Increase the counter by 1 if there is a match
         matchCount.html("Matches: " + counter); // Display the counter increase
         alert("Congratulations, you got a match!");
         console.log("The cards are the same!");
         gridCards = []; // Reset the array so cards can be compared again
+        // I'd suggest extracting the complext expression on the right half of the next line into a variable, something like `totalNumCards`
         if($('.check').length === ($("#memory-grid > li").length)) { // If all the cards have been matched (.check)
           alert("Congrats, you've revealed everything!");
           setTimeout(simpleClear, 2000); // Refresh the game
@@ -43,6 +50,7 @@ $(function playGame() {
   function clearCards() { // Function to clear unmatched cards
     gridCards[0].removeClass("check"); // Remove class to clear [0]
     gridCards[1].removeClass("check"); // Remove class to clear [1]
+    // this is a less idomatic way to reset an array, better would be do to `gridCards = []`
     gridCards.length = 0; // Resets cards so player can continue
   }
 
@@ -58,6 +66,8 @@ $(function playGame() {
       if (gridCards.length === 2) checkCards(); // If two cards are flipped, run function to check if cards are matching
   });
 
+  // might be best to run this function once automatically when the page loads. I forgot to click 'new game' and was
+  // confused why they weren't shuffled at first!
   newGame.on("click", function() { // Add Click Listener New Game button
     var cardShuffle = $("#memory-grid"); // Selects list items in #memory-grid
     for (var i = cardShuffle.children().length; i >= 0; i--) { // For the amount of list items, iterate through
